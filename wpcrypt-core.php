@@ -45,7 +45,7 @@ class WpCryptCore
 		echo '</td>';
 		echo '</tr></tbody></table>';
 
-		$pass  = '<table class="form-table"><tbody><tr><th><label for="cryptPass">2. Type your current password:</label></th>';
+		$pass  = '<table class="form-table"><tbody><tr><th><label for="cryptPass">2. Type your password:</label></th>';
 		$pass .= '<td><input type="text" name="cryptPass" id="cryptPass" size="20" />';
 		
 		$userID = get_current_user_id();
@@ -54,7 +54,7 @@ class WpCryptCore
 		echo $pass;
 
 
-		echo '<br /> You need to re-type your current password to change the hash stored in the DB (Be careful).<br>';
+		echo '<br /> You need to type your password to change the hash stored in the DB (Be careful).<br>';
 		echo '<br /> * AES Fuzzy Hash: Mix two AES methods in one "fuzzy" password hash.<br>';
 	
 		echo '<br /> Current method: '. self::getCurrentMethod();

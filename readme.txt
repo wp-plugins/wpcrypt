@@ -4,7 +4,7 @@ Donate link: http://bit.ly/14SH0Ik
 Tags: encryption, security, password, hash, hashes, sha1, sha2, AES
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 1.0 
+Stable tag: 0.1 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
