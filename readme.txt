@@ -1,6 +1,6 @@
 === WpCrypt ===
 Contributors: bruno.sousa
-Donate link: http://bit.ly/14SH0Ik
+Donate link: http://bit.ly/18QMDWC
 Tags: encryption, security, password, hash, hashes, sha1, sha2, AES
 Requires at least: 3.3
 Tested up to: 3.5.1
