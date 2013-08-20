@@ -1,10 +1,10 @@
 === WpCrypt ===
 Contributors: bruno.sousa
-Donate link: http://bit.ly/14SH0Ik
+Donate link: http://bit.ly/18QMDWC
 Tags: encryption, security, password, hash, hashes, sha1, sha2, AES
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 0.1 
+Stable tag: 0.2 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

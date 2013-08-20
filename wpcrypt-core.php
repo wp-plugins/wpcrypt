@@ -78,6 +78,9 @@ class WpCryptCore
 
 		if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
 		
+		if($_POST['AES_key'] != "") {
+			update_option(self::$WPCRYPTKEY_,$_POST['AES_key']);
+		}
 
 
 		if($_POST['wpcrypt_method'] != "") {
@@ -90,13 +93,6 @@ class WpCryptCore
 			$wpdb->update($wpdb->users, array('user_pass' => $hash), array('ID' => $user_id) );
 
 			wp_cache_delete($user_id, 'users');
-		}
-
-
-		if($_POST['AES_key'] != "") {
-
-			update_option(self::$WPCRYPTKEY_,$_POST['AES_key']);
-
 		}
 	}
 
