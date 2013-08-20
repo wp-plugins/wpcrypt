@@ -28,4 +28,4 @@ WpCrypt plugin was made to change password hashes stored in your DB from user pr
 
 == Screenshots ==
 
-1. http://oi44.tinypic.com/2qlvejr.jpg
+1. User profile
