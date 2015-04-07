@@ -38,7 +38,6 @@ class WpCryptCore
 			$selectMethod .= '<option value="2">SHA2</option>';
 			$selectMethod .= '<option value="3">AES128</option>';
 			$selectMethod .= '<option value="4">AES256</option>';
-			$selectMethod .= '<option value="5">* AES Fuzzy Hash</option>';
 		$selectMethod .= '</select>';
 
 		echo $selectMethod;
@@ -54,8 +53,7 @@ class WpCryptCore
 		echo $pass;
 
 
-		echo '<br /> You need to type your password to change the hash stored in the DB (Be careful).<br>';
-		echo '<br /> * AES Fuzzy Hash: Mix two AES methods in one "fuzzy" password hash.<br>';
+		echo '<br /> You need to type your password in order to change the hash stored in the database (Be careful).<br>';
 	
 		echo '<br /> Current method: '. self::getCurrentMethod();
 		echo '<br /> Current hash: '. $currentHash[0]->user_pass;
@@ -108,8 +106,6 @@ class WpCryptCore
 			$hash = AESCrypt::encrypt128($password);
 		elseif($method == 'AES256') :
 			$hash = AESCrypt::encrypt256($password);
-		elseif($method == 'AES FuzzyHash') :
-			$hash = AESCrypt::getFuzzyHash($password);
 		else:
 			$hash = wp_hash_password($password);
 		endif;
@@ -124,8 +120,7 @@ class WpCryptCore
 			1 => 'SHA1',
 			2 => 'SHA256',
 			3 => 'AES128',
-			4 => 'AES256',
-			5 => 'AES FuzzyHash'
+			4 => 'AES256'
 		);
 		$currentMethod = get_user_meta(get_current_user_id(), 'wpcrypt_method', true);
 		return $WpCrypt_Methods[$currentMethod];
@@ -168,11 +163,6 @@ class WpCryptCore
 		return (bool) preg_match('/[a-z0-9\/\+]+.+[=]$/i', $str);
 	}
 
-	public function is_fuzzyAES($str) {
-		return (bool) preg_match('/[a-z0-9\/\+]+.+[$]$/i', $str);
-		
-	}
-
 
 
 	 /* CUSTOM PASSWORD METHOD - Filter for wordpress check_password 
@@ -180,19 +170,6 @@ class WpCryptCore
 	 */
 	public function custom_check_password($crypt, $password, $hash) {
 		global $wp_hasher;
-
-		// Hash is AES FuzzyHash...
-		if ( self::is_fuzzyAES($hash) ) {
-			$AES = new AESCrypt(get_option(self::$WPCRYPTKEY_));
-			$check = ( $hash == AESCrypt::getFuzzyHash($password) );
-			if ( $check && $user_id ) {
-				// Rehash using new hash.
-				wp_set_password($password, $user_id);
-				$hash = wp_hash_password($password);
-			}
-
-			return apply_filters('checkme', $check, $password, $hash, $user_id);
-		}
 
 		// Hash is AES...
 		if ( self::is_AES($hash) ) {
@@ -262,7 +239,7 @@ class WpCryptCore
 	public function admin_notice() {
 		
 		$notice = '<div class="clear"></div><div class="updated" id="message">';
-		$notice .= '<p><strong>WpCrypt is running! Please, change your encryption method <a href="./profile.php#crypt">here</a>.</strong></p>';
+		$notice .= '<p><strong>WpCrypt is running! If you want to change your encryption method <a href="./profile.php#crypt">click here</a>.</strong></p>';
 		$notice .= '</div>';
 		echo $notice;
 	}
