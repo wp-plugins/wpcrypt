@@ -24,7 +24,7 @@ Allow users to change password encryption method to SHA1, SHA2, AES Rijndael and
 
 = Why should people be careful using WpCrypt? =
 
-WpCrypt plugin was made to change password hashes stored in your DB from user profile page.
+WpCrypt plugin was made to change password hashes stored in your DB through the user profile page.
 
 == Screenshots ==
 
